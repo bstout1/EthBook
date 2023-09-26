@@ -25,4 +25,12 @@ contract TestGaming {
 
         Assert.equal(expected, result, "The player should have lost by guessing the mystery number was lower than their number");
     }
+
+    function testWithdrawFunds() public {
+        uint256 ownerBalanceStart = gaming.owner.value;
+        gaming.withdrawFunds();
+        uint256 ownerBalanceEnd = gaming.owner.value;
+
+        Assert.equal(ownerBalanceStart+10 ether, ownerBalanceEnd, "The owner balane should increase by 10");
+    }
 }

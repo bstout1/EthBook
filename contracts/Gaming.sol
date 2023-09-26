@@ -62,4 +62,10 @@ contract Gaming {
             return false;
         }
     }
+
+    function withdrawFunds() public {
+        uint256 amount = address(this).value;
+        require(msg.sender == owner, "You are not the owner";)
+        payable(owner).transfer(amount);
+    } 
 }
