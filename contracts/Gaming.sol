@@ -14,7 +14,7 @@ contract Gaming {
         uint losses;
     }
 
-    mapping (uint => Player) players;
+    mapping (address => Player) players;
     
     
     constructor() public payable {
@@ -53,12 +53,12 @@ contract Gaming {
             /* Player won */
             player.wins++;
             msg.sender.transfer(wager * 2); // return the amount wagered plus the ether sent with the transaction
-            emit PlayerWon(msg.sender, msg.amount, mysteryNumber_);
+            emit PlayerWon(msg.sender, msg.value, mysteryNumber_);
             return true;
         } else if (isWinner == false) {
             /* Player lost */
             player.losses++;
-            emit PlayerLost(msg.sender, msg.amount, mysteryNumber_);
+            emit PlayerLost(msg.sender, msg.value, mysteryNumber_);
             return false;
         }
     }
