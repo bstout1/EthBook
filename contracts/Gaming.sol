@@ -1,8 +1,8 @@
-pragma solidity 0.5.0;
+pragma solidity >=0.5.0;
 
 contract Gaming {
     /* Our Online gaming contract */
-    address owner;
+    address payable public owner;
     bool online;
 
 
@@ -64,8 +64,8 @@ contract Gaming {
     }
 
     function withdrawFunds() public {
-        uint256 amount = address(this).value;
-        require(msg.sender == owner, "You are not the owner";)
-        payable(owner).transfer(amount);
+        uint256 amount = address(this).balance;
+        //require(msg.sender == owner, "You are not the owner");
+        owner.transfer(amount);
     } 
 }
